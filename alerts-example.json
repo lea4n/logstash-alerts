@@ -1,0 +1,49 @@
+{
+  "alerts": [
+    {
+      "name": "Test1",
+      "index": "[logstash-]+%Y.%m.%d",
+      "query": "*",
+      "timeframe": "5m",
+      "AlertEngines": [
+        {
+          "name": "xPerTime",
+          "args": {
+            "count": 10000
+          }
+        }
+      ],
+      "ActionEngines": [
+        {
+          "name": "email",
+          "args": {
+            "from": "alerts@logstash",
+            "to": "email@example.com",
+            "subject": "Test1"
+          }
+        },
+        {
+          "name": "index",
+          "args": {
+            "index": "[logstash-alerts-]+%Y.%m.%d"
+          }
+        }
+      ]
+    },
+    {
+      "name": "NotFound",
+      "index": "[logstash-NotFound-]+%Y.%m.%d",
+      "query": "*",
+      "timeframe": "12h",
+      "AlertEngines": [
+        {
+          "name": "xPerTime",
+          "args": {
+            "count": 4
+          }
+        }
+      ],
+      "ActionEngines": []
+    }
+  ]
+}
